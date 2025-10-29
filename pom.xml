@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<name>Explore With Me</name>
@@ -16,6 +16,13 @@
 	<artifactId>explore-with-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
+	<modules>
+		<module>stats-dto</module>
+		<module>stats-client</module>
+		<module>stats-service</module>
+		<module>ewm-main-service</module>
+	</modules>
 
 	<properties>
 		<java.version>21</java.version>
@@ -157,6 +164,8 @@
 						<artifactId>maven-checkstyle-plugin</artifactId>
 					</plugin>
 					<plugin>
+
+
 						<groupId>com.github.spotbugs</groupId>
 						<artifactId>spotbugs-maven-plugin</artifactId>
 					</plugin>
