@@ -11,6 +11,7 @@ import ru.practicum.dto.ViewStatsDto;
 import ru.practicum.service.service.StatsService;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -32,9 +33,11 @@ public class StatsController {
     public List<ViewStatsDto> getStats(
             @RequestParam @DateTimeFormat(pattern = DATE_TIME_FORMAT) LocalDateTime start,
             @RequestParam @DateTimeFormat(pattern = DATE_TIME_FORMAT) LocalDateTime end,
-            @RequestParam(required = false) List<String> uris,
+            @RequestParam(required = false) String[] uris,
             @RequestParam(defaultValue = "false") Boolean unique) {
-        log.info("Получение статистики с {} по {}, uris={}, unique={}", start, end, uris, unique);
-        return statsService.getStats(start, end, uris, unique);
+
+        List<String> urisList = (uris == null) ? null : Arrays.asList(uris);
+        log.info("Получение статистики с {} по {}, uris={}, unique={}", start, end, urisList, unique);
+        return statsService.getStats(start, end, urisList, unique);
     }
 }

@@ -3,16 +3,19 @@ package ru.practicum.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
+import org.springframework.web.util.UriComponentsBuilder;
 import ru.practicum.dto.EndpointHitDto;
+import ru.practicum.dto.ViewStatsDto;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class StatsClient {
@@ -30,14 +33,25 @@ public class StatsClient {
         rest.postForEntity("/hit", endpointHitDto, Void.class);
     }
 
-    public ResponseEntity<Object> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
-        Map<String, Object> parameters = Map.of(
-                "start", start.format(FORMATTER),
-                "end", end.format(FORMATTER),
-                "uris", String.join(",", uris),
-                "unique", unique
-        );
+    public ResponseEntity<List<ViewStatsDto>> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
+        UriComponentsBuilder builder = UriComponentsBuilder.fromPath("/stats")
+                .queryParam("start", start.format(FORMATTER))
+                .queryParam("end", end.format(FORMATTER))
+                .queryParam("unique", unique);
 
-        return rest.getForEntity("/stats?start={start}&end={end}&uris={uris}&unique={unique}", Object.class, parameters);
+        if (uris != null && !uris.isEmpty()) {
+            for (String uri : uris) {
+                builder.queryParam("uris", uri);
+            }
+        }
+
+        String url = builder.build(true).toUriString();
+
+        return rest.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {}
+        );
     }
 }

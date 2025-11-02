@@ -20,3 +20,9 @@ target/
 *.iws
 *.iml
 *.ipr
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.log
