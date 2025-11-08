@@ -1,497 +1,795 @@
 {
-	"id": "a1bc45d8-537d-43c0-b75c-f34804a22622",
-	"name": "feature",
-	"timestamp": "2025-11-08T11:47:59.035Z",
-	"collection_id": "47429067-9e522e2c-d4f5-49c8-aa83-5e353ef9988b",
-	"folder_id": 0,
-	"environment_id": "0",
-	"totalPass": 15,
-	"delay": 0,
-	"persist": true,
-	"status": "finished",
-	"startedAt": "2025-11-08T11:47:58.400Z",
-	"totalFail": 0,
-	"results": [
+	"info": {
+		"_postman_id": "9e522e2c-d4f5-49c8-aa83-5e353ef9988b",
+		"name": "feature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47429067",
+		"_collection_link": "https://bolshovaelizaveta-3310281.postman.co/workspace/Personal-Workspace~8a2cccd4-6a9a-40a2-a444-81e373168516/collection/47429067-9e522e2c-d4f5-49c8-aa83-5e353ef9988b?action=share&source=collection_link&creator=47429067"
+	},
+	"item": [
 		{
-			"id": "4dfdbb24-426c-4431-92c6-c688668f10c0",
 			"name": "Create User 1",
-			"url": "http://localhost:8080/admin/users",
-			"time": 33,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				33
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const user = pm.response.json();",
+							"pm.collectionVariables.set(\"userId1\", user.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
 			],
-			"allTests": [
-				{}
-			]
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Тестер Комментариев 1\", \"email\": \"tester1-{{$timestamp}}@test.com\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "e0564d4d-47e6-415c-9530-703d75b3936d",
 			"name": "Create User 2",
-			"url": "http://localhost:8080/admin/users",
-			"time": 6,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				6
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const user = pm.response.json();",
+							"pm.collectionVariables.set(\"userId2\", user.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
 			],
-			"allTests": [
-				{}
-			]
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Тестер Комментариев 2\", \"email\": \"tester2-{{$timestamp}}@test.com\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "ba7d6d43-aff8-4c97-a0b0-cab38e654fbc",
 			"name": "Create Category",
-			"url": "http://localhost:8080/admin/categories",
-			"time": 7,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				7
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const category = pm.response.json();",
+							"pm.collectionVariables.set(\"categoryId\", category.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
 			],
-			"allTests": [
-				{}
-			]
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Категория для тестов {{$timestamp}}\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"categories"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "0ba5e9ad-79bd-4581-97ce-8df11aa52c30",
 			"name": "Create Event",
-			"url": "http://localhost:8080/users/1/events",
-			"time": 12,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				12
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const event = pm.response.json();",
+							"pm.collectionVariables.set(\"eventId\", event.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
 			],
-			"allTests": [
-				{}
-			]
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"annotation\": \"Это очень подробная аннотация для нашего тестового события, чтобы она прошла валидацию по длине. Зумеры были бы в шоке, что надло столько букв.\",\n  \"category\": \"{{categoryId}}\",\n  \"description\": \"Полное и очень детальное описание нашего супер-важного тестового события, которое нужно для проверки функциональности комментариев. Длина этого описания теперь точно больше двадцати символов.\",\n  \"eventDate\": \"2029-12-31 20:00:00\",\n  \"location\": { \"lat\": 55.75, \"lon\": 37.62 },\n  \"title\": \"Событие для тестов {{$timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "4cef60cc-133a-49bd-ba64-c2dac47ef4a4",
 			"name": "Publish Event",
-			"url": "http://localhost:8080/admin/events/1",
-			"time": 11,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Событие успешно опубликовано": true
-			},
-			"testPassFailCounts": {
-				"Событие успешно опубликовано": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				11
-			],
-			"allTests": [
+			"event": [
 				{
-					"Событие успешно опубликовано": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Событие успешно опубликовано\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json().state).to.eql(\"PUBLISHED\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"stateAction\": \"PUBLISH_EVENT\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/events/{{eventId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"events",
+						"{{eventId}}"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "2ff8a51e-29ef-4cd9-80ce-f1ea6a260516",
 			"name": "Create Unpublished Event",
-			"url": "http://localhost:8080/users/1/events",
-			"time": 7,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				7
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const event = pm.response.json();",
+							"pm.collectionVariables.set(\"unpublishedEventId\", event.id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
 			],
-			"allTests": [
-				{}
-			]
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"annotation\": \"Это событие-черновик для негативного теста.\",\n  \"category\": \"{{categoryId}}\",\n  \"description\": \"Попытка оставить комментарий к этому неопубликованному событию, и это не должно получиться.\",\n  \"eventDate\": \"2026-01-15 10:00:00\",\n  \"location\": { \"lat\": 59.93, \"lon\": 30.31 },\n  \"title\": \"Событие-черновик {{$timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "a75d80d0-edc8-4939-ae4c-a2421ca4988d",
 			"name": "Add comment",
-			"url": "http://localhost:8080/users/1/events/1/comments",
-			"time": 8,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"Статус 201 CREATED": true,
-				"Тело ответа содержит ID и текст": true
-			},
-			"testPassFailCounts": {
-				"Статус 201 CREATED": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Тело ответа содержит ID и текст": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 201 CREATED": true,
-					"Тело ответа содержит ID и текст": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 201 CREATED\", () => pm.response.to.have.status(201));",
+							"pm.test(\"Тело ответа содержит ID и текст\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res).to.have.property('id');",
+							"    pm.expect(res.text).to.eql(\"Это мой первый комментарий для explore-with-me!\");",
+							"    pm.collectionVariables.set(\"commentId\", res.id); ",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Это мой первый комментарий для explore-with-me!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "517d8272-2c17-4941-9ad3-0cecd7cea000",
 			"name": "Get all comments",
-			"url": "http://localhost:8080/events/1/comments",
-			"time": 6,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Статус 200 OK": true,
-				"Ответ является массивом и содержит наш комментарий": true
-			},
-			"testPassFailCounts": {
-				"Статус 200 OK": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Ответ является массивом и содержит наш комментарий": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 200 OK": true,
-					"Ответ является массивом и содержит наш комментарий": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 200 OK\", () => pm.response.to.have.status(200));",
+							"pm.test(\"Ответ является массивом и содержит наш комментарий\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res).to.be.an('array');",
+							"    const found = res.find(c => c.id == pm.collectionVariables.get(\"commentId\"));",
+							"    pm.expect(found).to.not.be.undefined;",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "80ce5678-d114-4a24-97a8-ca9126f49bc1",
 			"name": "Update own comment",
-			"url": "http://localhost:8080/users/1/comments/1",
-			"time": 8,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Статус 200 OK": true,
-				"Текст комментария обновлен": true
-			},
-			"testPassFailCounts": {
-				"Статус 200 OK": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Текст комментария обновлен": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 200 OK": true,
-					"Текст комментария обновлен": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 200 OK\", () => pm.response.to.have.status(200));",
+							"pm.test(\"Текст комментария обновлен\", () => {",
+							"    pm.expect(pm.response.json().text).to.eql(\"Это обновленный комментарий.\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Это обновленный комментарий.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "d3cba377-c2b8-4fe6-99a3-2c705b6cc7fb",
 			"name": "Fail to update another's comment",
-			"url": "http://localhost:8080/users/2/comments/1",
-			"time": 6,
-			"responseCode": {
-				"code": 409,
-				"name": "Conflict"
-			},
-			"tests": {
-				"Статус 409 Conflict": true
-			},
-			"testPassFailCounts": {
-				"Статус 409 Conflict": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 409 Conflict": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
-		},
-		{
-			"id": "8b7741a4-56ad-402a-80f4-962becd3952e",
-			"name": "Second user adds a comment",
-			"url": "http://localhost:8080/users/2/events/1/comments",
-			"time": 9,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"Ответ 201 CREATED": true,
-				"Сохраняем ID второго комментария": true
-			},
-			"testPassFailCounts": {
-				"Ответ 201 CREATED": {
-					"pass": 1,
-					"fail": 0
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Попытка изменить чужой комментарий.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
-				"Сохраняем ID второго комментария": {
-					"pass": 1,
-					"fail": 0
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId2}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId2}}",
+						"comments",
+						"{{commentId}}"
+					]
 				}
 			},
-			"times": [
-				9
-			],
-			"allTests": [
-				{
-					"Ответ 201 CREATED": true,
-					"Сохраняем ID второго комментария": true
-				}
-			]
+			"response": []
 		},
 		{
-			"id": "0d4da19f-4264-43bc-a681-1187091bf04a",
+			"name": "Second user adds a comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ 201 CREATED\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Сохраняем ID второго комментария\", function() {",
+							"    const response = pm.response.json();",
+							"    pm.collectionVariables.set(\"commentId2\", response.id);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Тут комментарий Петра!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/2/events/1/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2",
+						"events",
+						"1",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Add comment for admin test",
-			"url": "http://localhost:8080/users/2/events/1/comments",
-			"time": 10,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"Статус 201 CREATED": true
-			},
-			"testPassFailCounts": {
-				"Статус 201 CREATED": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				10
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 201 CREATED": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 201 CREATED\", () => pm.response.to.have.status(201));",
+							"pm.collectionVariables.set(\"adminDeleteCommentId\", pm.response.json().id);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Этот комментарий удалит админ.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId2}}/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId2}}",
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "0b23bb86-6bd2-428b-bdc3-e014e873415c",
 			"name": "Admin deletes a comment",
-			"url": "http://localhost:8080/admin/comments/3",
-			"time": 7,
-			"responseCode": {
-				"code": 204,
-				"name": "No Content"
-			},
-			"tests": {
-				"Статус 204 No Content": true
-			},
-			"testPassFailCounts": {
-				"Статус 204 No Content": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 204 No Content": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/comments/{{adminDeleteCommentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"comments",
+						"{{adminDeleteCommentId}}"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "7543e9a3-e239-424b-80b7-ac515b2c4256",
 			"name": "User deletes their own comment",
-			"url": "http://localhost:8080/users/1/comments/1",
-			"time": 10,
-			"responseCode": {
-				"code": 204,
-				"name": "No Content"
-			},
-			"tests": {
-				"Статус 204 No Content": true
-			},
-			"testPassFailCounts": {
-				"Статус 204 No Content": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				10
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 204 No Content": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "45c724d9-0f62-4f7c-83ea-b507fd2ec620",
 			"name": "Fail to comment on unpublished event",
-			"url": "http://localhost:8080/users/1/events/2/comments",
-			"time": 5,
-			"responseCode": {
-				"code": 409,
-				"name": "Conflict"
-			},
-			"tests": {
-				"Статус 409 Conflict": true
-			},
-			"testPassFailCounts": {
-				"Статус 409 Conflict": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				5
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 409 Conflict": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Этот комментарий не должен создаться.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events/{{unpublishedEventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events",
+						"{{unpublishedEventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
 		},
 		{
-			"id": "7160e25a-9539-41bb-acec-4a8450e84b61",
 			"name": "Fail to delete non-existent comment",
-			"url": "http://localhost:8080/admin/comments/99999",
-			"time": 5,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"Статус 404 Not Found": true
-			},
-			"testPassFailCounts": {
-				"Статус 404 Not Found": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				5
-			],
-			"allTests": [
+			"event": [
 				{
-					"Статус 404 Not Found": true
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 404 Not Found\", () => pm.response.to.have.status(404));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/comments/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"comments",
+						"99999"
+					]
+				}
+			},
+			"response": []
 		}
 	],
-	"count": 1,
-	"totalTime": 150,
-	"collection": {
-		"requests": [
-			{
-				"id": "4dfdbb24-426c-4431-92c6-c688668f10c0",
-				"method": "POST"
-			},
-			{
-				"id": "e0564d4d-47e6-415c-9530-703d75b3936d",
-				"method": "POST"
-			},
-			{
-				"id": "ba7d6d43-aff8-4c97-a0b0-cab38e654fbc",
-				"method": "POST"
-			},
-			{
-				"id": "0ba5e9ad-79bd-4581-97ce-8df11aa52c30",
-				"method": "POST"
-			},
-			{
-				"id": "4cef60cc-133a-49bd-ba64-c2dac47ef4a4",
-				"method": "PATCH"
-			},
-			{
-				"id": "2ff8a51e-29ef-4cd9-80ce-f1ea6a260516",
-				"method": "POST"
-			},
-			{
-				"id": "a75d80d0-edc8-4939-ae4c-a2421ca4988d",
-				"method": "POST"
-			},
-			{
-				"id": "517d8272-2c17-4941-9ad3-0cecd7cea000",
-				"method": "GET"
-			},
-			{
-				"id": "80ce5678-d114-4a24-97a8-ca9126f49bc1",
-				"method": "PATCH"
-			},
-			{
-				"id": "d3cba377-c2b8-4fe6-99a3-2c705b6cc7fb",
-				"method": "PATCH"
-			},
-			{
-				"id": "8b7741a4-56ad-402a-80f4-962becd3952e",
-				"method": "POST"
-			},
-			{
-				"id": "0d4da19f-4264-43bc-a681-1187091bf04a",
-				"method": "POST"
-			},
-			{
-				"id": "0b23bb86-6bd2-428b-bdc3-e014e873415c",
-				"method": "DELETE"
-			},
-			{
-				"id": "7543e9a3-e239-424b-80b7-ac515b2c4256",
-				"method": "DELETE"
-			},
-			{
-				"id": "45c724d9-0f62-4f7c-83ea-b507fd2ec620",
-				"method": "POST"
-			},
-			{
-				"id": "7160e25a-9539-41bb-acec-4a8450e84b61",
-				"method": "DELETE"
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
 			}
-		]
-	}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "commentId",
+			"value": ""
+		},
+		{
+			"key": "commentId2",
+			"value": ""
+		},
+		{
+			"key": "userId2",
+			"value": ""
+		},
+		{
+			"key": "categoryId",
+			"value": ""
+		},
+		{
+			"key": "eventId",
+			"value": ""
+		},
+		{
+			"key": "userId1",
+			"value": ""
+		},
+		{
+			"key": "adminDeleteCommentId",
+			"value": ""
+		},
+		{
+			"key": "unpublishedEventId",
+			"value": ""
+		}
+	]
 }
