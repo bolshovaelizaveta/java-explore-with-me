@@ -15,7 +15,8 @@
 					"script": {
 						"exec": [
 							"const user = pm.response.json();",
-							"pm.collectionVariables.set(\"userId1\", user.id);"
+							"pm.collectionVariables.set(\"userId1\", user.id);",
+							"postman.setNextRequest(\"Create User 2\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -58,7 +59,8 @@
 					"script": {
 						"exec": [
 							"const user = pm.response.json();",
-							"pm.collectionVariables.set(\"userId2\", user.id);"
+							"pm.collectionVariables.set(\"userId2\", user.id);",
+							"postman.setNextRequest(\"Create Category\");"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -101,7 +103,8 @@
 					"script": {
 						"exec": [
 							"const category = pm.response.json();",
-							"pm.collectionVariables.set(\"categoryId\", category.id);"
+							"pm.collectionVariables.set(\"categoryId\", category.id);",
+							"postman.setNextRequest(\"Create Event\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -144,7 +147,8 @@
 					"script": {
 						"exec": [
 							"const event = pm.response.json();",
-							"pm.collectionVariables.set(\"eventId\", event.id);"
+							"pm.collectionVariables.set(\"eventId\", event.id);",
+							"postman.setNextRequest(\"Publish Event\");"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -190,7 +194,8 @@
 							"pm.test(\"Событие успешно опубликовано\", () => {",
 							"    pm.response.to.have.status(200);",
 							"    pm.expect(pm.response.json().state).to.eql(\"PUBLISHED\");",
-							"});"
+							"});",
+							"postman.setNextRequest(\"Create Unpublished Event\");"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -234,7 +239,8 @@
 					"script": {
 						"exec": [
 							"const event = pm.response.json();",
-							"pm.collectionVariables.set(\"unpublishedEventId\", event.id);"
+							"pm.collectionVariables.set(\"unpublishedEventId\", event.id);",
+							"postman.setNextRequest(\"Add comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -283,7 +289,8 @@
 							"    pm.expect(res).to.have.property('id');",
 							"    pm.expect(res.text).to.eql(\"Это мой первый комментарий для explore-with-me!\");",
 							"    pm.collectionVariables.set(\"commentId\", res.id); ",
-							"});"
+							"});",
+							"postman.setNextRequest(\"Get all comments\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -345,7 +352,8 @@
 							"    pm.expect(res).to.be.an('array');",
 							"    const found = res.find(c => c.id == pm.collectionVariables.get(\"commentId\"));",
 							"    pm.expect(found).to.not.be.undefined;",
-							"});"
+							"});",
+							"postman.setNextRequest(\"Update own comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -394,7 +402,8 @@
 							"pm.test(\"Статус 200 OK\", () => pm.response.to.have.status(200));",
 							"pm.test(\"Текст комментария обновлен\", () => {",
 							"    pm.expect(pm.response.json().text).to.eql(\"Это обновленный комментарий.\");",
-							"});"
+							"});",
+							"postman.setNextRequest(\"Fail to update another's comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -438,7 +447,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));"
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));",
+							"postman.setNextRequest(\"Second user adds a comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -490,7 +500,7 @@
 							"    const response = pm.response.json();",
 							"    pm.collectionVariables.set(\"commentId2\", response.id);",
 							"});",
-							""
+							"postman.setNextRequest(\"Add comment for admin test\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -536,7 +546,8 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Статус 201 CREATED\", () => pm.response.to.have.status(201));",
-							"pm.collectionVariables.set(\"adminDeleteCommentId\", pm.response.json().id);"
+							"pm.collectionVariables.set(\"adminDeleteCommentId\", pm.response.json().id);",
+							"postman.setNextRequest(\"Admin deletes a comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -581,7 +592,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));"
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));",
+							"postman.setNextRequest(\"User deletes their own comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -615,7 +627,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));"
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));",
+							"postman.setNextRequest(\"Fail to comment on unpublished event\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -650,7 +663,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));"
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));",
+							"postman.setNextRequest(\"Fail to delete non-existent comment\"); "
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -706,7 +720,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Статус 404 Not Found\", () => pm.response.to.have.status(404));"
+							"pm.test(\"Статус 404 Not Found\", () => pm.response.to.have.status(404));",
+							"postman.setNextRequest(null);"
 						],
 						"type": "text/javascript",
 						"packages": {},
