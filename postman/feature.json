@@ -1,0 +1,497 @@
+{
+	"id": "a1bc45d8-537d-43c0-b75c-f34804a22622",
+	"name": "feature",
+	"timestamp": "2025-11-08T11:47:59.035Z",
+	"collection_id": "47429067-9e522e2c-d4f5-49c8-aa83-5e353ef9988b",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 15,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-11-08T11:47:58.400Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "4dfdbb24-426c-4431-92c6-c688668f10c0",
+			"name": "Create User 1",
+			"url": "http://localhost:8080/admin/users",
+			"time": 33,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				33
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e0564d4d-47e6-415c-9530-703d75b3936d",
+			"name": "Create User 2",
+			"url": "http://localhost:8080/admin/users",
+			"time": 6,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				6
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ba7d6d43-aff8-4c97-a0b0-cab38e654fbc",
+			"name": "Create Category",
+			"url": "http://localhost:8080/admin/categories",
+			"time": 7,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0ba5e9ad-79bd-4581-97ce-8df11aa52c30",
+			"name": "Create Event",
+			"url": "http://localhost:8080/users/1/events",
+			"time": 12,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				12
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4cef60cc-133a-49bd-ba64-c2dac47ef4a4",
+			"name": "Publish Event",
+			"url": "http://localhost:8080/admin/events/1",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Событие успешно опубликовано": true
+			},
+			"testPassFailCounts": {
+				"Событие успешно опубликовано": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11
+			],
+			"allTests": [
+				{
+					"Событие успешно опубликовано": true
+				}
+			]
+		},
+		{
+			"id": "2ff8a51e-29ef-4cd9-80ce-f1ea6a260516",
+			"name": "Create Unpublished Event",
+			"url": "http://localhost:8080/users/1/events",
+			"time": 7,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "a75d80d0-edc8-4939-ae4c-a2421ca4988d",
+			"name": "Add comment",
+			"url": "http://localhost:8080/users/1/events/1/comments",
+			"time": 8,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Статус 201 CREATED": true,
+				"Тело ответа содержит ID и текст": true
+			},
+			"testPassFailCounts": {
+				"Статус 201 CREATED": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Тело ответа содержит ID и текст": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Статус 201 CREATED": true,
+					"Тело ответа содержит ID и текст": true
+				}
+			]
+		},
+		{
+			"id": "517d8272-2c17-4941-9ad3-0cecd7cea000",
+			"name": "Get all comments",
+			"url": "http://localhost:8080/events/1/comments",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Статус 200 OK": true,
+				"Ответ является массивом и содержит наш комментарий": true
+			},
+			"testPassFailCounts": {
+				"Статус 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Ответ является массивом и содержит наш комментарий": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Статус 200 OK": true,
+					"Ответ является массивом и содержит наш комментарий": true
+				}
+			]
+		},
+		{
+			"id": "80ce5678-d114-4a24-97a8-ca9126f49bc1",
+			"name": "Update own comment",
+			"url": "http://localhost:8080/users/1/comments/1",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Статус 200 OK": true,
+				"Текст комментария обновлен": true
+			},
+			"testPassFailCounts": {
+				"Статус 200 OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Текст комментария обновлен": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Статус 200 OK": true,
+					"Текст комментария обновлен": true
+				}
+			]
+		},
+		{
+			"id": "d3cba377-c2b8-4fe6-99a3-2c705b6cc7fb",
+			"name": "Fail to update another's comment",
+			"url": "http://localhost:8080/users/2/comments/1",
+			"time": 6,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Статус 409 Conflict": true
+			},
+			"testPassFailCounts": {
+				"Статус 409 Conflict": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Статус 409 Conflict": true
+				}
+			]
+		},
+		{
+			"id": "8b7741a4-56ad-402a-80f4-962becd3952e",
+			"name": "Second user adds a comment",
+			"url": "http://localhost:8080/users/2/events/1/comments",
+			"time": 9,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Ответ 201 CREATED": true,
+				"Сохраняем ID второго комментария": true
+			},
+			"testPassFailCounts": {
+				"Ответ 201 CREATED": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Сохраняем ID второго комментария": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Ответ 201 CREATED": true,
+					"Сохраняем ID второго комментария": true
+				}
+			]
+		},
+		{
+			"id": "0d4da19f-4264-43bc-a681-1187091bf04a",
+			"name": "Add comment for admin test",
+			"url": "http://localhost:8080/users/2/events/1/comments",
+			"time": 10,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Статус 201 CREATED": true
+			},
+			"testPassFailCounts": {
+				"Статус 201 CREATED": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Статус 201 CREATED": true
+				}
+			]
+		},
+		{
+			"id": "0b23bb86-6bd2-428b-bdc3-e014e873415c",
+			"name": "Admin deletes a comment",
+			"url": "http://localhost:8080/admin/comments/3",
+			"time": 7,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Статус 204 No Content": true
+			},
+			"testPassFailCounts": {
+				"Статус 204 No Content": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Статус 204 No Content": true
+				}
+			]
+		},
+		{
+			"id": "7543e9a3-e239-424b-80b7-ac515b2c4256",
+			"name": "User deletes their own comment",
+			"url": "http://localhost:8080/users/1/comments/1",
+			"time": 10,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Статус 204 No Content": true
+			},
+			"testPassFailCounts": {
+				"Статус 204 No Content": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Статус 204 No Content": true
+				}
+			]
+		},
+		{
+			"id": "45c724d9-0f62-4f7c-83ea-b507fd2ec620",
+			"name": "Fail to comment on unpublished event",
+			"url": "http://localhost:8080/users/1/events/2/comments",
+			"time": 5,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Статус 409 Conflict": true
+			},
+			"testPassFailCounts": {
+				"Статус 409 Conflict": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Статус 409 Conflict": true
+				}
+			]
+		},
+		{
+			"id": "7160e25a-9539-41bb-acec-4a8450e84b61",
+			"name": "Fail to delete non-existent comment",
+			"url": "http://localhost:8080/admin/comments/99999",
+			"time": 5,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Статус 404 Not Found": true
+			},
+			"testPassFailCounts": {
+				"Статус 404 Not Found": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Статус 404 Not Found": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 150,
+	"collection": {
+		"requests": [
+			{
+				"id": "4dfdbb24-426c-4431-92c6-c688668f10c0",
+				"method": "POST"
+			},
+			{
+				"id": "e0564d4d-47e6-415c-9530-703d75b3936d",
+				"method": "POST"
+			},
+			{
+				"id": "ba7d6d43-aff8-4c97-a0b0-cab38e654fbc",
+				"method": "POST"
+			},
+			{
+				"id": "0ba5e9ad-79bd-4581-97ce-8df11aa52c30",
+				"method": "POST"
+			},
+			{
+				"id": "4cef60cc-133a-49bd-ba64-c2dac47ef4a4",
+				"method": "PATCH"
+			},
+			{
+				"id": "2ff8a51e-29ef-4cd9-80ce-f1ea6a260516",
+				"method": "POST"
+			},
+			{
+				"id": "a75d80d0-edc8-4939-ae4c-a2421ca4988d",
+				"method": "POST"
+			},
+			{
+				"id": "517d8272-2c17-4941-9ad3-0cecd7cea000",
+				"method": "GET"
+			},
+			{
+				"id": "80ce5678-d114-4a24-97a8-ca9126f49bc1",
+				"method": "PATCH"
+			},
+			{
+				"id": "d3cba377-c2b8-4fe6-99a3-2c705b6cc7fb",
+				"method": "PATCH"
+			},
+			{
+				"id": "8b7741a4-56ad-402a-80f4-962becd3952e",
+				"method": "POST"
+			},
+			{
+				"id": "0d4da19f-4264-43bc-a681-1187091bf04a",
+				"method": "POST"
+			},
+			{
+				"id": "0b23bb86-6bd2-428b-bdc3-e014e873415c",
+				"method": "DELETE"
+			},
+			{
+				"id": "7543e9a3-e239-424b-80b7-ac515b2c4256",
+				"method": "DELETE"
+			},
+			{
+				"id": "45c724d9-0f62-4f7c-83ea-b507fd2ec620",
+				"method": "POST"
+			},
+			{
+				"id": "7160e25a-9539-41bb-acec-4a8450e84b61",
+				"method": "DELETE"
+			}
+		]
+	}
+}
