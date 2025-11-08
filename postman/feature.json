@@ -521,7 +521,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/2/events/1/comments",
+					"raw": "http://localhost:8080/users/{{userId2}}/events/{{eventId}}/comments",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -529,9 +529,9 @@
 					"port": "8080",
 					"path": [
 						"users",
-						"2",
+						"{{userId2}}",
 						"events",
-						"1",
+						"{{eventId}}",
 						"comments"
 					]
 				}
