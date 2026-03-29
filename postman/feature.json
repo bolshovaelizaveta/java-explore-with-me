@@ -1,0 +1,810 @@
+{
+	"info": {
+		"_postman_id": "9e522e2c-d4f5-49c8-aa83-5e353ef9988b",
+		"name": "feature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47429067",
+		"_collection_link": "https://bolshovaelizaveta-3310281.postman.co/workspace/Personal-Workspace~8a2cccd4-6a9a-40a2-a444-81e373168516/collection/47429067-9e522e2c-d4f5-49c8-aa83-5e353ef9988b?action=share&source=collection_link&creator=47429067"
+	},
+	"item": [
+		{
+			"name": "Create User 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const user = pm.response.json();",
+							"pm.collectionVariables.set(\"userId1\", user.id);",
+							"postman.setNextRequest(\"Create User 2\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Тестер Комментариев 1\", \"email\": \"tester1-{{$timestamp}}@test.com\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const user = pm.response.json();",
+							"pm.collectionVariables.set(\"userId2\", user.id);",
+							"postman.setNextRequest(\"Create Category\");"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Тестер Комментариев 2\", \"email\": \"tester2-{{$timestamp}}@test.com\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const category = pm.response.json();",
+							"pm.collectionVariables.set(\"categoryId\", category.id);",
+							"postman.setNextRequest(\"Create Event\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Категория для тестов {{$timestamp}}\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const event = pm.response.json();",
+							"pm.collectionVariables.set(\"eventId\", event.id);",
+							"postman.setNextRequest(\"Publish Event\");"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"annotation\": \"Это очень подробная аннотация для нашего тестового события, чтобы она прошла валидацию по длине. Зумеры были бы в шоке, что надло столько букв.\",\n  \"category\": \"{{categoryId}}\",\n  \"description\": \"Полное и очень детальное описание нашего супер-важного тестового события, которое нужно для проверки функциональности комментариев. Длина этого описания теперь точно больше двадцати символов.\",\n  \"eventDate\": \"2029-12-31 20:00:00\",\n  \"location\": { \"lat\": 55.75, \"lon\": 37.62 },\n  \"title\": \"Событие для тестов {{$timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Событие успешно опубликовано\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json().state).to.eql(\"PUBLISHED\");",
+							"});",
+							"postman.setNextRequest(\"Create Unpublished Event\");"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"stateAction\": \"PUBLISH_EVENT\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/admin/events/{{eventId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"events",
+						"{{eventId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Unpublished Event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const event = pm.response.json();",
+							"pm.collectionVariables.set(\"unpublishedEventId\", event.id);",
+							"postman.setNextRequest(\"Add comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"annotation\": \"Это событие-черновик для негативного теста.\",\n  \"category\": \"{{categoryId}}\",\n  \"description\": \"Попытка оставить комментарий к этому неопубликованному событию, и это не должно получиться.\",\n  \"eventDate\": \"2026-01-15 10:00:00\",\n  \"location\": { \"lat\": 59.93, \"lon\": 30.31 },\n  \"title\": \"Событие-черновик {{$timestamp}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 201 CREATED\", () => pm.response.to.have.status(201));",
+							"pm.test(\"Тело ответа содержит ID и текст\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res).to.have.property('id');",
+							"    pm.expect(res.text).to.eql(\"Это мой первый комментарий для explore-with-me!\");",
+							"    pm.collectionVariables.set(\"commentId\", res.id); ",
+							"});",
+							"postman.setNextRequest(\"Get all comments\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Это мой первый комментарий для explore-with-me!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 200 OK\", () => pm.response.to.have.status(200));",
+							"pm.test(\"Ответ является массивом и содержит наш комментарий\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(res).to.be.an('array');",
+							"    const found = res.find(c => c.id == pm.collectionVariables.get(\"commentId\"));",
+							"    pm.expect(found).to.not.be.undefined;",
+							"});",
+							"postman.setNextRequest(\"Update own comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update own comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 200 OK\", () => pm.response.to.have.status(200));",
+							"pm.test(\"Текст комментария обновлен\", () => {",
+							"    pm.expect(pm.response.json().text).to.eql(\"Это обновленный комментарий.\");",
+							"});",
+							"postman.setNextRequest(\"Fail to update another's comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Это обновленный комментарий.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fail to update another's comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));",
+							"postman.setNextRequest(\"Second user adds a comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Попытка изменить чужой комментарий.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId2}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId2}}",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Second user adds a comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ 201 CREATED\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Сохраняем ID второго комментария\", function() {",
+							"    const response = pm.response.json();",
+							"    pm.collectionVariables.set(\"commentId2\", response.id);",
+							"});",
+							"postman.setNextRequest(\"Add comment for admin test\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Тут комментарий Петра!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId2}}/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId2}}",
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment for admin test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 201 CREATED\", () => pm.response.to.have.status(201));",
+							"pm.collectionVariables.set(\"adminDeleteCommentId\", pm.response.json().id);",
+							"postman.setNextRequest(\"Admin deletes a comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Этот комментарий удалит админ.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId2}}/events/{{eventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId2}}",
+						"events",
+						"{{eventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin deletes a comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));",
+							"postman.setNextRequest(\"User deletes their own comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/comments/{{adminDeleteCommentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"comments",
+						"{{adminDeleteCommentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User deletes their own comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 204 No Content\", () => pm.response.to.have.status(204));",
+							"postman.setNextRequest(\"Fail to comment on unpublished event\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/comments/{{commentId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"comments",
+						"{{commentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fail to comment on unpublished event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 409 Conflict\", () => pm.response.to.have.status(409));",
+							"postman.setNextRequest(\"Fail to delete non-existent comment\"); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"text\": \"Этот комментарий не должен создаться.\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/{{userId1}}/events/{{unpublishedEventId}}/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId1}}",
+						"events",
+						"{{unpublishedEventId}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fail to delete non-existent comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Статус 404 Not Found\", () => pm.response.to.have.status(404));",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/admin/comments/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"admin",
+						"comments",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "commentId",
+			"value": ""
+		},
+		{
+			"key": "commentId2",
+			"value": ""
+		},
+		{
+			"key": "userId2",
+			"value": ""
+		},
+		{
+			"key": "categoryId",
+			"value": ""
+		},
+		{
+			"key": "eventId",
+			"value": ""
+		},
+		{
+			"key": "userId1",
+			"value": ""
+		},
+		{
+			"key": "adminDeleteCommentId",
+			"value": ""
+		},
+		{
+			"key": "unpublishedEventId",
+			"value": ""
+		}
+	]
+}
